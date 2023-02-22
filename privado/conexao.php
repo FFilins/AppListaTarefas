@@ -20,10 +20,6 @@ class Conexao {
             echo '<p>'. $e->getMessage().'</p>';
         }
     }
-
-
-
 }
-
 
 ?>
