@@ -19,7 +19,7 @@ require 'tarefa_controller.php';
 	function editar(id, txt_tarefa) {
 
 		let form = document.createElement('form')
-		form.action = 'tarefa_controller.php?acao=atualizar'
+		form.action = 'tarefa_controller.php?acao=atualizar&url=todas_tarefas.php'
 		form.method = 'post'
 		form.className = 'row'
 
@@ -50,7 +50,14 @@ require 'tarefa_controller.php';
 		tarefa.innerHTML = ''
 
 		tarefa.insertBefore(form, tarefa[0])
+	}
 
+	function remover(id) {
+		location.href = 'todas_tarefas.php?acao=remover&id='+id+'&url=todas_tarefas.php'
+	}
+
+	function marcarRealizada(id) {
+		location.href = 'todas_tarefas.php?acao=marcarRealizada&id='+id+'&url=todas_tarefas.php'
 
 	}
 
@@ -91,9 +98,14 @@ require 'tarefa_controller.php';
 										<?= $tarefa->tarefa ?> (<?= $tarefa->status?>)
 									</div>
 									<div class="col-sm-3 mt-2 d-flex justify-content-between">
-										<i class="fas fa-trash-alt fa-lg text-danger"></i>
+										<i class="fas fa-trash-alt fa-lg text-danger" onclick="remover(<?= $tarefa->id ?>)"></i>
+
+										<?php if($tarefa->status == 'pendente') { ?>
 										<i class="fas fa-edit fa-lg text-info" onclick="editar(<?= $tarefa->id ?>, '<?= $tarefa->tarefa ?>')"></i>
-										<i class="fas fa-check-square fa-lg text-success"></i>
+										<i class="fas fa-check-square fa-lg text-success" onclick="marcarRealizada(<?= $tarefa->id ?>)"></i>
+										<?php } ?>
+
+
 									</div>
 								</div>
 								<?php } ?>
