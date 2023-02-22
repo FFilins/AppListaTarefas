@@ -1,7 +1,7 @@
 <?php 
 
 class Conexao {
-    private $host = 'localhost';
+    private $host = '127.0.0.1:3309';
     private $dbname = 'php_com_pdo';
     private $user = 'root';
     private $pass = 'root';

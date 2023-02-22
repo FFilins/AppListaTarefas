@@ -24,7 +24,21 @@ if($acao == 'inserir') {
     $tarefaService = new TarefaService($conexao, $tarefa);
     $tarefas = $tarefaService->recuperar();
     
+}else if($acao == 'atualizar'){
+    $tarefa = new Tarefa();
+    $tarefa->__set('id', $_POST['id']);
+    $tarefa->__set('tarefa', $_POST['tarefa']);
+    
+    $conexao = new Conexao();
+
+    $tarefaservice = new TarefaService($conexao, $tarefa);
+    if($tarefaservice->atualizar()) {
+        header('Location: todas_tarefas.php');
+    } 
+
+
 }
+
 
 
 ?>
